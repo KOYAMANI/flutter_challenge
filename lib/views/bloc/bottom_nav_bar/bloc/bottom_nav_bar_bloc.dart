@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-
-import 'package:meta/meta.dart';
-
 import 'bottom_nav_bar_event.dart';
 import 'bottom_nav_bar_state.dart';
 
@@ -25,12 +22,12 @@ class BottomNavBarBloc extends Bloc<BottomNavBarEvent, BottomNavBarState> {
       switch (currentIndex) {
         case 0:
           {
-            yield WeatherPageLoaded();
+            yield const WeatherPageLoaded();
           }
           break;
         case 1:
           {
-            yield CVPageLoaded();
+            yield const CVPageLoaded();
           }
           break;
       }

@@ -2,9 +2,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_challenge/domain/models/models.dart';
 
-final lon = 113.2;
-final lat = 23.1;
-final uri =
+const lon = 113.2;
+const lat = 23.1;
+const uri =
     "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json";
 
 // Future<List<WeatherData>> fetchWeather() async {
@@ -35,8 +35,6 @@ Future<dynamic> fetchWeather() async {
 
 // Future<WeatherData> getCurrentWeather(UserLocation location) async {
 Future<List<WeatherData>> getCurrentWeather(UserLocation location) async {
-  //TODO Pass geolocation and Time data to get specific weather data from the list
-
   print('lon:${location.longtitude}');
   print('lat: ${location.latitude}');
   final url = Uri.parse(

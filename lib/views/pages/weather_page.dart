@@ -26,13 +26,15 @@ class _WeatherPageState extends State<WeatherPage> {
     var userLocation = provider.Provider.of<UserLocation>(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather'),
-        backgroundColor: Colors.blueAccent,
+        title: Text(
+          'Weather',
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
       ),
       body: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height / 5,
+          height: MediaQuery.of(context).size.height * 0.15,
           child: GestureDetector(
             onTap: () {
               setState(() {
@@ -54,35 +56,39 @@ class _WeatherPageState extends State<WeatherPage> {
                   gradient: const LinearGradient(
                       begin: Alignment(0.5, -1.1),
                       end: Alignment(1.0, 1.0),
-                      colors: [Colors.blueAccent, Colors.lightBlue]),
+                      colors: [Colors.blueAccent, Colors.lightBlueAccent]),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Icon(Icons.location_on),
-                        Text(
-                          'Location',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                    ListTile(
+                      leading: Icon(Icons.location_on, color: Colors.white),
+                      title: Text(
+                        'Location',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
                     ),
                     const Divider(
-                      color: Colors.black,
-                      height: 20,
+                      color: Colors.white,
+                      height: 8,
                       thickness: 1,
                       indent: 10,
                       endIndent: 10,
                     ),
                     // Text('latitude: ${userLocation.latitude}'),
                     // Text('longtitude: ${userLocation.longtitude}'),
-                    Text(userLocation.address),
+                    Text(
+                      userLocation.address,
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    //TODO get and show tempeature data from API
+                    Text(
+                      '__°C',
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
                   ],
                 ),
               ),
@@ -100,7 +106,7 @@ class _WeatherPageState extends State<WeatherPage> {
         children: [
           IconButton(
               onPressed: () => Navigator.of(context).pop(),
-              icon: Icon(Icons.close)),
+              icon: const Icon(Icons.close)),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
             child: Consumer(builder: (context, watch, child) {
