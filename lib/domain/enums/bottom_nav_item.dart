@@ -1,0 +1,1 @@
+enum BottomNavItem { weather, cv }

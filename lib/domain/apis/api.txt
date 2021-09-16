@@ -1,0 +1,21 @@
+https://www.7timer.info/bin/api.pl?lon=14.398&lat=47.911&product=astro&output=json;
+
+{
+    "product" : "astro" ,
+    "init" : "2021091600" ,
+    "dataseries" : [
+    {
+    "timepoint" : 3, //Local time
+    "cloudcover" : 9, //Cloud Amount
+    "seeing" : 3, //Astro Seeing
+    "transparency" : 8, //Transparency
+    "lifted_index" : 2, 
+    "rh2m" : 15, 
+    "wind10m" : { 
+        "direction" : "W", 
+        "speed" : 2
+    },
+    "temp2m" : 15, //2m Temp
+    "prec_type" : "rain" //Precipitation
+    },
+},
