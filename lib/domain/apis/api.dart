@@ -7,18 +7,6 @@ const lat = 23.1;
 const uri =
     "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json";
 
-// Future<List<WeatherData>> fetchWeather() async {
-//   final url = Uri.parse(uri);
-//   final res = await http.get(url);
-
-//   if (res.statusCode == 200) {
-//     var jsonList = jsonDecode(res.body) as List;
-//     return jsonList.map((e) => WeatherData.fromJson(e)).toList();
-//   } else {
-//     throw Exception('couldn´t fetch Weather');
-//   }
-// }
-
 Future<dynamic> fetchWeather() async {
   final url = Uri.parse(uri);
   final res = await http.get(url);
@@ -43,6 +31,7 @@ Future<List<WeatherData>> getCurrentWeather(UserLocation location) async {
   final res = await http.get(url);
 
   if (res.statusCode == 200) {
+    // print(res.body);
     var body = jsonDecode(res.body)['dataseries'];
     // WeatherData weatherData = WeatherData(
     //   timepoint: body['timepoint'],
@@ -61,17 +50,3 @@ Future<List<WeatherData>> getCurrentWeather(UserLocation location) async {
     throw Exception('couldn´t fetch Weather');
   }
 }
-
-//Example
-// Future<dynamic> setAudioDevices(int id) async {
-//   // JSON response example
-//   // { "success": true }
-//   final url = Uri.parse('http://127.0.0.1:5000/api/setAudioDevice?id=$id');
-//   final res = await http.get(url);
-
-//   if (res.statusCode == 200) {
-//     return jsonDecode(res.body)['success'];
-//   } else {
-//     throw Exception('can´t set audio device');
-//   }
-// }

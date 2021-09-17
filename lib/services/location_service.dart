@@ -8,7 +8,8 @@ class LocationService {
   //Keep track of current location
   Location location = Location();
   late UserLocation currentLocation;
-  late String currentAddress;
+  late geo.Placemark currentAddress;
+  // late String currentAddress;
 
   //Continuously emit location updates
   final StreamController<UserLocation> _locationController =
@@ -26,7 +27,8 @@ class LocationService {
           _locationController.add(UserLocation(
               latitude: locationData.latitude!,
               longtitude: locationData.longitude!,
-              address: currentAddress));
+              country: currentAddress.country!,
+              city: currentAddress.locality!));
         });
       }
     });
@@ -39,24 +41,23 @@ class LocationService {
           userLocation.latitude!, userLocation.longitude!);
 
       currentLocation = UserLocation(
-        latitude: userLocation.latitude!,
-        longtitude: userLocation.longitude!,
-        address: currentAddress,
-      );
+          latitude: userLocation.latitude!,
+          longtitude: userLocation.longitude!,
+          country: currentAddress.country!,
+          city: currentAddress.locality!);
     } catch (e) {
       print('Could not get the location $e');
     }
     return currentLocation;
   }
 
-  Future<String> getAddressFromLatLng(
+  Future<geo.Placemark> getAddressFromLatLng(
       double? latitude, double? longitude) async {
     try {
       List<geo.Placemark> p =
           await geo.placemarkFromCoordinates(latitude!, longitude!);
       geo.Placemark place = p[0];
-      currentAddress =
-          "${place.locality}, ${place.postalCode}, ${place.country}";
+      currentAddress = place;
     } catch (e) {
       print(e);
     }

@@ -5,7 +5,6 @@ import 'package:flutter_challenge/views/bloc/blocs.dart';
 import 'package:flutter_challenge/views/pages/pages.dart';
 import 'package:flutter_challenge/services/location_service.dart';
 import 'package:flutter_challenge/domain/models/models.dart';
-import 'package:flutter_challenge/domain/repositories/app_theme.dart';
 import 'package:provider/provider.dart' as provider;
 
 class NavigationScreen extends StatefulWidget {
@@ -32,7 +31,10 @@ class _NavigationScreenState extends State<NavigationScreen> {
             return provider.StreamProvider<UserLocation>(
               create: (_) => LocationService().getStreamData,
               initialData: UserLocation(
-                  latitude: 34.69, longtitude: 135.50, address: 'Osaka'),
+                  latitude: 0.00,
+                  longtitude: 0.00,
+                  country: 'Country failed to load',
+                  city: 'City failed to load'),
               child: const WeatherPage(),
             );
           }

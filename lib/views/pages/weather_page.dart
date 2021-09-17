@@ -3,6 +3,7 @@ import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:flutter_challenge/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_challenge/domain/repositories/repositories.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -34,7 +35,7 @@ class _WeatherPageState extends State<WeatherPage> {
       body: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.15,
+          height: MediaQuery.of(context).size.height * 0.2, //0.15
           child: GestureDetector(
             onTap: () {
               setState(() {
@@ -75,10 +76,12 @@ class _WeatherPageState extends State<WeatherPage> {
                       indent: 10,
                       endIndent: 10,
                     ),
-                    // Text('latitude: ${userLocation.latitude}'),
-                    // Text('longtitude: ${userLocation.longtitude}'),
                     Text(
-                      userLocation.address,
+                      userLocation.city,
+                      style: Theme.of(context).textTheme.headline1,
+                    ),
+                    Text(
+                      userLocation.country,
                       style: Theme.of(context).textTheme.headline1,
                     ),
                     const SizedBox(
@@ -110,38 +113,48 @@ class _WeatherPageState extends State<WeatherPage> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.4,
             child: Consumer(builder: (context, watch, child) {
-              final data = watch(currentWeatherProvider(userLocation));
-              return data.when(
-                data: (data) => Column(
+              final weather = watch(currentWeatherProvider(userLocation));
+              return weather.when(
+                data: (weather) => Column(
                   children: [
-                    Text(userLocation.address),
+                    Text(userLocation.city),
+                    const Text('tempreature'),
                     Expanded(
                         child: RefreshIndicator(
                       onRefresh: () => _refreshList(userLocation),
                       child: ListView.builder(
                           controller: _scrollController,
                           scrollDirection: Axis.horizontal,
-                          itemCount: data.length,
+                          itemCount: weather.length,
                           itemBuilder: (context, index) {
-                            final weather = data[index];
+                            final data = weather[index];
+
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.blueAccent,
+                                  // color: Colors.blueAccent,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 child: Column(
                                   children: [
-                                    Text(weather.timepoint.toString()),
-                                    Text('cloudcover: ${weather.cloudcover}'),
-                                    Text('seeing: ${weather.seeing}'),
-                                    Text(
-                                        'transparency: ${weather.transparency}'),
-                                    Text('liftedIndex: ${weather.liftedIndex}'),
-                                    Text('rh2m: ${weather.rh2m}'),
-                                    Text('tempreature: ${weather.temp2m}'),
-                                    Text('precType: ${weather.precType}'),
+                                    Text(data.timepoint.toString()),
+                                    Text('${data.temp2m}°C'),
+
+                                    Text(cloudCover['${data.cloudcover}']!),
+                                    Text(seeing['${data.seeing}']!),
+                                    Text(transparency['${data.transparency}']!),
+                                    Text(liftedIndex['${data.liftedIndex}']!),
+                                    Text(cloudCover['${data.cloudcover}']!),
+                                    Text(rh2m['${data.rh2m}']!),
+
+                                    Text('precType: ${data.precType}'),
+
+                                    // Text('cloudcover: ${data.cloudcover}'),
+                                    // Text('seeing: ${data.seeing}'),
+                                    // Text('transparency: ${data.transparency}'),
+                                    // Text('liftedIndex: ${data.liftedIndex}'),
+                                    // Text('rh2m: ${data.rh2m}'),
                                   ],
                                 ),
                               ),

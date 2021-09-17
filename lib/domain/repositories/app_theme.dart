@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-//TODO implement themedata to the app
-//implementation > style: Theme.of(context).textTheme.bodyText1,
-
 class AppTheme {
   AppTheme._();
 
