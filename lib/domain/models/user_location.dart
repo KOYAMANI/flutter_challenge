@@ -1,9 +1,9 @@
+//This is a data model for the user coordination
 class UserLocation {
   final double latitude;
   final double longtitude;
   final String country;
   final String city;
-  // final String address;
 
   UserLocation(
       {required this.latitude,

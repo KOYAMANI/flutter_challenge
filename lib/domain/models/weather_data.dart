@@ -1,5 +1,8 @@
 import 'models.dart';
 
+//This is a data model for weather data from the API
+//https://www.7timer.info/bin/api.pl?lon=14.398&lat=47.911&product=astro&output=json
+
 class WeatherData {
   final int timepoint;
   final int cloudcover;

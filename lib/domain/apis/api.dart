@@ -31,7 +31,6 @@ Future<List<WeatherData>> getCurrentWeather(UserLocation location) async {
   final res = await http.get(url);
 
   if (res.statusCode == 200) {
-    // print(res.body);
     var body = jsonDecode(res.body)['dataseries'];
     // WeatherData weatherData = WeatherData(
     //   timepoint: body['timepoint'],

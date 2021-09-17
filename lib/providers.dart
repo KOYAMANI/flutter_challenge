@@ -6,7 +6,3 @@ import 'package:riverpod/riverpod.dart';
 final weatherProvider = FutureProvider((ref) => fetchWeather());
 final currentWeatherProvider = FutureProvider.family(
     (ref, UserLocation location) => getCurrentWeather(location));
-
-// Example
-// final setDeviceProvider =
-//     FutureProvider.family((ref, int id) => setAudioDevices(id));

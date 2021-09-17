@@ -4,6 +4,7 @@ import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:flutter_challenge/domain/models/models.dart';
 
+// Get Coordination data
 class LocationService {
   //Keep track of current location
   Location location = Location();

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:flutter_challenge/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:flutter_challenge/domain/repositories/repositories.dart';
+import 'package:flutter_challenge/helpers/helpers.dart';
+
+//This is a page to show current City and Weather
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -15,6 +18,13 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage> {
   bool isFetchingWeather = false;
   ScrollController _scrollController = ScrollController();
+  TimeHelper timeHelper = TimeHelper();
+  BoxDecoration customDecoration = const BoxDecoration(
+    gradient: LinearGradient(
+        begin: Alignment(0.5, -1.1),
+        end: Alignment(1.0, 1.0),
+        colors: [Colors.blueAccent, Colors.lightBlueAccent]),
+  );
 
   @override
   void initState() {
@@ -52,18 +62,15 @@ class _WeatherPageState extends State<WeatherPage> {
             },
             child: Card(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: customDecoration.copyWith(
                   borderRadius: BorderRadius.circular(8.0),
-                  gradient: const LinearGradient(
-                      begin: Alignment(0.5, -1.1),
-                      end: Alignment(1.0, 1.0),
-                      colors: [Colors.blueAccent, Colors.lightBlueAccent]),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ListTile(
-                      leading: Icon(Icons.location_on, color: Colors.white),
+                      leading:
+                          const Icon(Icons.location_on, color: Colors.white),
                       title: Text(
                         'Location',
                         style: Theme.of(context).textTheme.bodyText1,
@@ -82,7 +89,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                     Text(
                       userLocation.country,
-                      style: Theme.of(context).textTheme.headline1,
+                      style: Theme.of(context).textTheme.headline2,
                     ),
                     const SizedBox(
                       height: 5,
@@ -102,87 +109,124 @@ class _WeatherPageState extends State<WeatherPage> {
     );
   }
 
+//Bottom sheet shows detailed forcast based on the user location
   _buildBottomSheet(UserLocation userLocation) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IconButton(
-              onPressed: () => Navigator.of(context).pop(),
-              icon: const Icon(Icons.close)),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.4,
-            child: Consumer(builder: (context, watch, child) {
-              final weather = watch(currentWeatherProvider(userLocation));
-              return weather.when(
-                data: (weather) => Column(
-                  children: [
-                    Text(userLocation.city),
-                    const Text('tempreature'),
-                    Expanded(
-                        child: RefreshIndicator(
-                      onRefresh: () => _refreshList(userLocation),
-                      child: ListView.builder(
-                          controller: _scrollController,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: weather.length,
-                          itemBuilder: (context, index) {
-                            final data = weather[index];
+      body: Container(
+        decoration: customDecoration,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Column(
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                ListTile(
+                  trailing: IconButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      icon: const Icon(
+                        Icons.close,
+                        color: Colors.white,
+                      )),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+              ],
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Consumer(builder: (context, watch, child) {
+                final weather = watch(currentWeatherProvider(userLocation));
 
-                            return Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  // color: Colors.blueAccent,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
+                return weather.when(
+                  data: (weather) => Column(
+                    children: [
+                      Text(
+                        userLocation.city,
+                        style: Theme.of(context).textTheme.headline3,
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height / 7,
+                      ),
+                      Expanded(
+                        child: ListView.builder(
+                            controller: _scrollController,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: weather.length,
+                            itemBuilder: (context, index) {
+                              final data = weather[index];
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
                                 child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    Text(data.timepoint.toString()),
-                                    Text('${data.temp2m}°C'),
+                                    // Text(data.timepoint.toString()),
+                                    // Show weekday
+                                    Text(
+                                      timeHelper
+                                          .getDayAndTime(data.timepoint)
+                                          .weekday,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    // Show time in 24hour
+                                    Text(
+                                      timeHelper
+                                          .getDayAndTime(data.timepoint)
+                                          .hour
+                                          .toString(),
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
 
-                                    Text(cloudCover['${data.cloudcover}']!),
-                                    Text(seeing['${data.seeing}']!),
-                                    Text(transparency['${data.transparency}']!),
-                                    Text(liftedIndex['${data.liftedIndex}']!),
-                                    Text(cloudCover['${data.cloudcover}']!),
-                                    Text(rh2m['${data.rh2m}']!),
+                                    Text(
+                                      '${data.temp2m}°C',
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
 
-                                    Text('precType: ${data.precType}'),
-
-                                    // Text('cloudcover: ${data.cloudcover}'),
-                                    // Text('seeing: ${data.seeing}'),
-                                    // Text('transparency: ${data.transparency}'),
-                                    // Text('liftedIndex: ${data.liftedIndex}'),
-                                    // Text('rh2m: ${data.rh2m}'),
+                                    Text(
+                                      cloudCover['${data.cloudcover}']!,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    // Text(seeing['${data.seeing}']!),
+                                    // Text(transparency['${data.transparency}']!),
+                                    // Text(liftedIndex['${data.liftedIndex}']!),
+                                    // Text(cloudCover['${data.cloudcover}']!),
+                                    Text(
+                                      rh2m['${data.rh2m}']!,
+                                      style:
+                                          Theme.of(context).textTheme.bodyText1,
+                                    ),
+                                    // Text('precType: ${data.precType}'),
                                   ],
                                 ),
-                              ),
-                            );
-                          }),
-                    ))
-                  ],
-                ),
-                loading: () => const Center(
-                  child: CircularProgressIndicator(
-                    backgroundColor: Colors.blue,
+                              );
+                            }),
+                      )
+                    ],
                   ),
-                ),
-                error: (error, _) => Column(
-                  children: [
-                    Text(error.toString()),
-                    ElevatedButton(
-                      onPressed: () {
-                        context.refresh(currentWeatherProvider(userLocation));
-                      },
-                      child: const Text('Try again'),
+                  loading: () => const Center(
+                    child: CircularProgressIndicator(
+                      backgroundColor: Colors.yellow,
                     ),
-                  ],
-                ),
-              );
-            }),
-          ),
-        ],
+                  ),
+                  error: (error, _) => Column(
+                    children: [
+                      Text(error.toString()),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.refresh(currentWeatherProvider(userLocation));
+                        },
+                        child: const Text('Try again'),
+                      ),
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ],
+        ),
       ),
     );
   }

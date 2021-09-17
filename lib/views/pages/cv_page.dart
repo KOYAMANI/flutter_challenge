@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+// This is a static page to show CV
 class CVPage extends StatelessWidget {
   CVPage({Key? key}) : super(key: key);
+
+  //TODO move 2 lists below to repository folder
+
   final List<String> information = [
     '12439 Berlin Germany',
     'yutaro.koyama@code.berlin',

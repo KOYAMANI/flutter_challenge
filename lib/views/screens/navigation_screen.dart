@@ -7,6 +7,7 @@ import 'package:flutter_challenge/services/location_service.dart';
 import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:provider/provider.dart' as provider;
 
+//This is a Navigation Screen
 class NavigationScreen extends StatefulWidget {
   const NavigationScreen({Key? key}) : super(key: key);
   @override
