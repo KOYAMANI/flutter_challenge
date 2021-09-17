@@ -14,8 +14,31 @@ Future<dynamic> fetchWeather() async {
   if (res.statusCode == 200) {
     print(res.body);
     var data = jsonDecode(res.body)['dataseries'];
-
     return data;
+  } else {
+    throw Exception('couldn´t fetch Weather');
+  }
+}
+
+Future<WeatherData> fetchTempreature(UserLocation location) async {
+  final url = Uri.parse(
+      "https://www.7timer.info/bin/astro.php?lon=${location.longtitude}&lat=${location.latitude}&ac=0&unit=metric&output=json");
+  final res = await http.get(url);
+
+  if (res.statusCode == 200) {
+    var body = jsonDecode(res.body)['dataseries'];
+    print(body);
+    WeatherData weatherData = WeatherData(
+      timepoint: body['timepoint'],
+      cloudcover: body['cloudcover'],
+      seeing: body['seeing'],
+      transparency: body['tansparency'],
+      liftedIndex: body['ifted_index'],
+      rh2m: body['rh2m'],
+      temp2m: body['temp2m'],
+      precType: body['prec_type'],
+    );
+    return weatherData;
   } else {
     throw Exception('couldn´t fetch Weather');
   }
@@ -32,17 +55,6 @@ Future<List<WeatherData>> getCurrentWeather(UserLocation location) async {
 
   if (res.statusCode == 200) {
     var body = jsonDecode(res.body)['dataseries'];
-    // WeatherData weatherData = WeatherData(
-    //   timepoint: body['timepoint'],
-    //   cloudcover: body['cloudcover'],
-    //   seeing: body['seeing'],
-    //   transparency: body['tansparency'],
-    //   liftedIndex: body['ifted_index'],
-    //   rh2m: body['rh2m'],
-    //   temp2m: body['temp2m'],
-    //   precType: body['prec_type'],
-    // );
-    // return weatherData;
     var jsonList = jsonDecode(res.body)['dataseries'] as List;
     return jsonList.map((e) => WeatherData.fromJson(e)).toList();
   } else {

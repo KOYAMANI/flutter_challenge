@@ -22,6 +22,8 @@ class BottomNavBarBloc extends Bloc<BottomNavBarEvent, BottomNavBarState> {
       switch (currentIndex) {
         case 0:
           {
+            //TODO implement fetch tempreature
+            // final data = await WeatherRepository.fetchData(tempreature);
             yield const WeatherPageLoaded();
           }
           break;

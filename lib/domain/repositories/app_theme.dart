@@ -25,11 +25,12 @@ class AppTheme {
     textTheme: _primaryTextTheme,
   );
 
-  static const TextTheme _primaryTextTheme = TextTheme(
+  static final TextTheme _primaryTextTheme = TextTheme(
     headline1: _primaryHeadlineTextStyle,
     headline2: _secondaryHeadlineTextStyle,
     headline3: _bigHeadlineTextStyle,
     bodyText1: _primaryBodyTextStyle,
+    bodyText2: _secondaryBodyTextStyle,
   );
 
   static const TextStyle _primaryHeadlineTextStyle = TextStyle(
@@ -52,6 +53,10 @@ class AppTheme {
 
   static const TextStyle _primaryBodyTextStyle = TextStyle(
     color: _primaryColor,
+    fontWeight: FontWeight.bold,
+  );
+  static final TextStyle _secondaryBodyTextStyle = TextStyle(
+    color: Colors.grey[400],
     fontWeight: FontWeight.bold,
   );
 }

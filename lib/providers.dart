@@ -6,3 +6,5 @@ import 'package:riverpod/riverpod.dart';
 final weatherProvider = FutureProvider((ref) => fetchWeather());
 final currentWeatherProvider = FutureProvider.family(
     (ref, UserLocation location) => getCurrentWeather(location));
+final tempreatureProvider = FutureProvider.family(
+    (ref, UserLocation location) => fetchTempreature(location));
