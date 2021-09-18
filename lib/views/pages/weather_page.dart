@@ -31,6 +31,7 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     var userLocation = provider.Provider.of<UserLocation>(context);
     return Scaffold(
+      backgroundColor: Colors.white60,
       appBar: AppBar(
         title: Text(
           'Weather',
@@ -40,7 +41,7 @@ class _WeatherPageState extends State<WeatherPage> {
       body: Center(
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.8,
-          height: MediaQuery.of(context).size.height * 0.15, //0.15
+          height: MediaQuery.of(context).size.height * 0.2,
           child: GestureDetector(
             onTap: () {
               setState(() {

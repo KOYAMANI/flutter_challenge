@@ -1,6 +1,6 @@
 # flutter_challenge
 
-A Flutter project for the Appinio application.
+A Flutter project for the Coding Challenge.
 
 ## Environment
 
@@ -12,11 +12,9 @@ Dart: 2.14.0
 2. Emulator
 
 iOS
-Version:
-Phone:  
-Resolution:
+Version: 14.4
+Phone: iPhone 12 Pro Max
 
 Android
 Version: 7.1 API 25  
-Phone: Google Pixel XL  
-Resolution: 1440 x 2560
+Phone: Google Pixel XL

@@ -69,13 +69,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   icon: Icon(
                     Icons.wb_sunny,
                   ),
-                  label: '',
+                  label: 'Weather',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.person,
                   ),
-                  label: '',
+                  label: 'Profile',
                 ),
               ],
               onTap: (index) =>

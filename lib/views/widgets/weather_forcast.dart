@@ -178,8 +178,10 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                 style: Theme.of(context).textTheme.bodyText2),
                             Text('transp',
                                 style: Theme.of(context).textTheme.bodyText2),
-                            Text('lifted Idx',
+                            Text('wind',
                                 style: Theme.of(context).textTheme.bodyText2),
+                            // Text('lifted Idx',
+                            //     style: Theme.of(context).textTheme.bodyText2),
                             Text('humid',
                                 style: Theme.of(context).textTheme.bodyText2),
                           ],
@@ -206,6 +208,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
+                                      //TODO need to consider which data to show
                                       // Show weekday
                                       Text(
                                           timeHelper
@@ -246,10 +249,15 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                               .textTheme
                                               .bodyText1),
                                       const SizedBox(width: 7),
-                                      Text(liftedIndex['${data.liftedIndex}']!,
+                                      Text('${data.windData.speed}',
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
+                                      // const SizedBox(width: 7),
+                                      // Text(liftedIndex['${data.liftedIndex}']!,
+                                      //     style: Theme.of(context)
+                                      //         .textTheme
+                                      //         .bodyText1),
                                       const SizedBox(width: 7),
                                       Text(
                                         rh2m['${data.rh2m}']!,
