@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenge/domain/repositories/app_theme.dart';
+import 'package:flutter_challenge/domain/repositories/repositories.dart';
 import 'package:flutter_challenge/views/bloc/blocs.dart';
 import 'package:flutter_challenge/views/screens/screens.dart';
 
@@ -15,10 +16,11 @@ class App extends StatelessWidget {
       title: 'Flutter Demo',
       theme: AppTheme.customTheme,
       home: BlocProvider<BottomNavBarBloc>(
-        create: (context) => BottomNavBarBloc()
-          ..add(
-            const AppStarted(),
-          ),
+        create: (context) =>
+            BottomNavBarBloc(cvPageRepository: CVPageRepository())
+              ..add(
+                const AppStarted(),
+              ),
         child: const NavigationScreen(),
       ),
     );

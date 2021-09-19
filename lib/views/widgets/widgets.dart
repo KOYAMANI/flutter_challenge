@@ -1,1 +1,1 @@
-export 'weather_forcast.dart';
+export 'weather_forecast.dart';

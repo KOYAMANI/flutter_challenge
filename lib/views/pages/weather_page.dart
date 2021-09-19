@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge/views/widgets/weather_forcast.dart';
+import 'package:flutter_challenge/views/widgets/weather_forecast.dart';
 import 'package:provider/provider.dart' as provider;
 import 'package:flutter_challenge/providers.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:flutter_challenge/helpers/helpers.dart';
+import 'package:weather_icons/weather_icons.dart';
 
 //This is a page to show current City and Weather
 
@@ -17,6 +18,7 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   TimeHelper timeHelper = TimeHelper();
+  WeatherIconHelper weatherIconHelper = WeatherIconHelper();
 
   bool isFetchingWeather = false;
 
@@ -52,7 +54,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     isScrollControlled: true,
                     context: context,
                     builder: (BuildContext context) {
-                      return WeatherForcastSheet(userLocation: userLocation);
+                      return WeatherForecast(userLocation: userLocation);
                     });
               }
             },
@@ -79,14 +81,29 @@ class _WeatherPageState extends State<WeatherPage> {
                         indent: 10,
                         endIndent: 10),
                     const SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
                     Consumer(builder: (context, watch, child) {
                       final weather = watch(weatherProvider(userLocation));
+
                       return weather.when(
-                          data: (weather) => Text(
-                                '${weather[0].temp2m}°C',
-                                style: Theme.of(context).textTheme.headline3,
+                          data: (weather) => Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '${weather[0].temp2m}°C',
+                                    style:
+                                        Theme.of(context).textTheme.headline3,
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  BoxedIcon(
+                                    weatherIconHelper.getWeatherIcon(
+                                        data: weather[0]),
+                                    size: 30,
+                                  ),
+                                ],
                               ),
                           loading: () => const CircularProgressIndicator(
                                 backgroundColor: Colors.white,

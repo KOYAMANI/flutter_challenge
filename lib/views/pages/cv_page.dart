@@ -1,23 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/domain/repositories/repositories.dart';
 
 // This is a static page to show CV
 class CVPage extends StatelessWidget {
-  CVPage({Key? key}) : super(key: key);
-
-  //TODO move 2 lists below to repository folder
-
-  final List<String> information = [
-    '12439 Berlin Germany',
-    'yutaro.koyama@code.berlin',
-    'https://github.com/KOYAMANI',
-    'https://www.linkedin.com/in\n/yutaro-koyama-142853200'
-  ];
-  final List<Icon> icons = [
-    const Icon(Icons.place, color: Colors.white),
-    const Icon(Icons.email, color: Colors.white),
-    const Icon(Icons.laptop_mac_rounded, color: Colors.white),
-    const Icon(Icons.link, color: Colors.white),
-  ];
+  final CVPageRepository cvPageRepository;
+  const CVPage({Key? key, required this.cvPageRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +31,8 @@ class CVPage extends StatelessWidget {
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 2,
                   height: MediaQuery.of(context).size.height / 3,
-                  child: const CircleAvatar(
-                    backgroundImage: AssetImage(
-                      'assets/profile.jpg',
-                    ),
-                  ),
+                  child: CircleAvatar(
+                      backgroundImage: cvPageRepository.profileImage),
                 ),
                 ListTile(
                   leading: Text(
@@ -58,14 +42,14 @@ class CVPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemCount: information.length,
+                      itemCount: cvPageRepository.information.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.all(1.0),
                           child: ListTile(
-                            leading: icons[index],
+                            leading: cvPageRepository.icons[index],
                             title: Text(
-                              information[index],
+                              cvPageRepository.information[index],
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ),

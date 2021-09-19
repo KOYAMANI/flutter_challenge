@@ -2,12 +2,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_challenge/domain/models/models.dart';
 
-//TODO delete unused contructors
-const lon = 113.2;
-const lat = 23.1;
-const uri =
-    "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json";
-
 //API URL = "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json"
 
 // Future<WeatherData> getCurrentWeather(UserLocation location) async {

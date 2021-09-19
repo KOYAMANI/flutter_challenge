@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge/domain/repositories/repositories.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenge/views/bloc/blocs.dart';
@@ -40,7 +41,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
             );
           }
           if (state is CVPageLoaded) {
-            return CVPage();
+            return CVPage(cvPageRepository: CVPageRepository());
           }
           return Container();
         },

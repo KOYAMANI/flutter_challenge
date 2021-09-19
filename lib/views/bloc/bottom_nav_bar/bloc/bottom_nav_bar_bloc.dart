@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter_challenge/domain/repositories/repositories.dart';
 import 'bottom_nav_bar_event.dart';
 import 'bottom_nav_bar_state.dart';
 
 class BottomNavBarBloc extends Bloc<BottomNavBarEvent, BottomNavBarState> {
-  BottomNavBarBloc() : super(const PageLoading());
+  CVPageRepository cvPageRepository = CVPageRepository();
+  BottomNavBarBloc({required this.cvPageRepository})
+      : super(const PageLoading());
 
   int currentIndex = 0;
 

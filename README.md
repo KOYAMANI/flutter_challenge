@@ -2,12 +2,16 @@
 
 A Flutter project for the Coding Challenge.
 
+## Get Started
+
+Ensure to enable the location servivce on your device.
+
 ## Environment
 
 1. Flutter & Dart
 
-Flutter Version: 2.4.0-1.0.pre.119 | master channel  
-Dart: 2.14.0
+Flutter Version: 2.6.0-5.1.pre | dev channel  
+Dart: 2.15.0
 
 2. Emulator
 

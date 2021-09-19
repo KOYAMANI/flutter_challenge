@@ -7,17 +7,18 @@ import 'package:flutter_challenge/helpers/helpers.dart';
 
 //This is a widget to show detailed forcast based on the current user location
 
-class WeatherForcastSheet extends StatefulWidget {
+class WeatherForecast extends StatefulWidget {
   final UserLocation userLocation;
-  const WeatherForcastSheet({Key? key, required this.userLocation})
+  const WeatherForecast({Key? key, required this.userLocation})
       : super(key: key);
 
   @override
-  State<WeatherForcastSheet> createState() => _WeatherForcastSheetState();
+  State<WeatherForecast> createState() => _WeatherForecastState();
 }
 
-class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
+class _WeatherForecastState extends State<WeatherForecast> {
   TimeHelper timeHelper = TimeHelper();
+  WeatherIconHelper weatherIconHelper = WeatherIconHelper();
 
   BoxDecoration customDecoration = const BoxDecoration(
     gradient: LinearGradient(
@@ -92,13 +93,13 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     // Show weekday
-                                    Text(
-                                        timeHelper
-                                            .getDayAndTime(id: data.timepoint)
-                                            .weekday,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
+                                    // Text(
+                                    //     timeHelper
+                                    //         .getDayAndTime(id: data.timepoint)
+                                    //         .weekday,
+                                    //     style: Theme.of(context)
+                                    //         .textTheme
+                                    //         .bodyText1),
                                     // Show time in 24hour
                                     // first data should be the data for now
                                     if (index == 0)
@@ -116,6 +117,8 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                               .textTheme
                                               .bodyText1),
 
+                                    Icon(weatherIconHelper.getWeatherIcon(
+                                        data: data)),
                                     Text(
                                       '${data.temp2m}°C',
                                       style:
@@ -166,21 +169,21 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text('day',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                             Text('time',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                             Text('cloud',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                             Text('seeing',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                             Text('transp',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                             Text('wind',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                             // Text('lifted Idx',
                             //     style: Theme.of(context).textTheme.bodyText2),
                             Text('humid',
-                                style: Theme.of(context).textTheme.bodyText2),
+                                style: Theme.of(context).textTheme.bodyText1),
                           ],
                         ),
                       ),
