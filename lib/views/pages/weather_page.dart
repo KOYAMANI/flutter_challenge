@@ -82,8 +82,7 @@ class _WeatherPageState extends State<WeatherPage> {
                       height: 5,
                     ),
                     Consumer(builder: (context, watch, child) {
-                      final weather =
-                          watch(currentWeatherProvider(userLocation));
+                      final weather = watch(weatherProvider(userLocation));
                       return weather.when(
                           data: (weather) => Text(
                                 '${weather[0].temp2m}°C',
@@ -96,8 +95,8 @@ class _WeatherPageState extends State<WeatherPage> {
                               leading: IconButton(
                                 icon: const Icon(Icons.refresh,
                                     color: Colors.white),
-                                onPressed: () => context.refresh(
-                                    currentWeatherProvider(userLocation)),
+                                onPressed: () => context
+                                    .refresh(weatherProvider(userLocation)),
                               ),
                               title: Text(
                                 error.toString(),

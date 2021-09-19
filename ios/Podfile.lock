@@ -4,6 +4,8 @@ PODS:
     - Flutter
   - geolocator_apple (1.2.0):
     - Flutter
+  - integration_test (0.0.1):
+    - Flutter
   - location (0.0.1):
     - Flutter
   - "permission_handler (5.1.0+2)":
@@ -13,6 +15,7 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - geocoding (from `.symlinks/plugins/geocoding/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - location (from `.symlinks/plugins/location/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
 
@@ -23,15 +26,18 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geocoding/ios"
   geolocator_apple:
     :path: ".symlinks/plugins/geolocator_apple/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   location:
     :path: ".symlinks/plugins/location/ios"
   permission_handler:
     :path: ".symlinks/plugins/permission_handler/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
+  integration_test: 62e878779d19c79e80913db7dfe6c27b07754c2e
   location: 3a2eed4dd2fab25e7b7baf2a9efefe82b512d740
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
 

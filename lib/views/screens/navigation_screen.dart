@@ -31,7 +31,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           if (state is WeatherPageLoaded) {
             return provider.StreamProvider<UserLocation>(
               create: (_) => LocationService().getStreamData,
-              initialData: UserLocation(
+              initialData: const UserLocation(
                   latitude: 0.00,
                   longtitude: 0.00,
                   country: 'Country failed to load',

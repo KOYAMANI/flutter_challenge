@@ -1,13 +1,17 @@
+import 'package:equatable/equatable.dart';
+
 //This is a data model for the user coordination
-class UserLocation {
+class UserLocation extends Equatable {
   final double latitude;
   final double longtitude;
   final String country;
   final String city;
 
-  UserLocation(
+  const UserLocation(
       {required this.latitude,
       required this.longtitude,
       required this.country,
       required this.city});
+  @override
+  List<Object?> get props => [latitude, longtitude, country, city];
 }

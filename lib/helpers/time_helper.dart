@@ -11,15 +11,15 @@ class TimeHelper {
 
   // TODO? should it get the time from coordinate data
   // id == API response.body['timepoint']
-  DayAndTime getDayAndTime(int id) {
+  DayAndTime getDayAndTime({required int id}) {
     int shownTime = hour;
     if (id != 3) {
       shownTime = hour + id - 3;
     }
-    return getWeekDay(shownTime);
+    return getWeekDay(hour: shownTime);
   }
 
-  DayAndTime getWeekDay(int hour) {
+  DayAndTime getWeekDay({required int hour}) {
     int dateCode;
     int newHour = hour;
     if (hour <= 24) {

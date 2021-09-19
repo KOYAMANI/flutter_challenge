@@ -60,8 +60,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.30,
               child: Consumer(builder: (context, watch, child) {
-                final weather =
-                    watch(currentWeatherProvider(widget.userLocation));
+                final weather = watch(weatherProvider(widget.userLocation));
                 return weather.when(
                   data: (weather) => Column(
                     children: [
@@ -95,7 +94,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                     // Show weekday
                                     Text(
                                         timeHelper
-                                            .getDayAndTime(data.timepoint)
+                                            .getDayAndTime(id: data.timepoint)
                                             .weekday,
                                         style: Theme.of(context)
                                             .textTheme
@@ -110,7 +109,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                     if (index != 0)
                                       Text(
                                           timeHelper
-                                              .getDayAndTime(data.timepoint)
+                                              .getDayAndTime(id: data.timepoint)
                                               .hour
                                               .toString(),
                                           style: Theme.of(context)
@@ -139,8 +138,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                       Text(error.toString()),
                       ElevatedButton(
                         onPressed: () {
-                          context.refresh(
-                              currentWeatherProvider(widget.userLocation));
+                          context.refresh(weatherProvider(widget.userLocation));
                         },
                         child: const Text('Try again'),
                       ),
@@ -152,8 +150,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.33,
               child: Consumer(builder: (context, watch, child) {
-                final weather =
-                    watch(currentWeatherProvider(widget.userLocation));
+                final weather = watch(weatherProvider(widget.userLocation));
                 return weather.when(
                   data: (weather) => Column(
                     children: [
@@ -212,7 +209,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                       // Show weekday
                                       Text(
                                           timeHelper
-                                              .getDayAndTime(data.timepoint)
+                                              .getDayAndTime(id: data.timepoint)
                                               .weekday,
                                           style: Theme.of(context)
                                               .textTheme
@@ -226,7 +223,8 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                                       if (index != 0)
                                         Text(
                                             timeHelper
-                                                .getDayAndTime(data.timepoint)
+                                                .getDayAndTime(
+                                                    id: data.timepoint)
                                                 .hour
                                                 .toString(),
                                             style: Theme.of(context)
@@ -285,8 +283,7 @@ class _WeatherForcastSheetState extends State<WeatherForcastSheet> {
                       Text(error.toString()),
                       ElevatedButton(
                         onPressed: () {
-                          context.refresh(
-                              currentWeatherProvider(widget.userLocation));
+                          context.refresh(weatherProvider(widget.userLocation));
                         },
                         child: const Text('Try again'),
                       ),

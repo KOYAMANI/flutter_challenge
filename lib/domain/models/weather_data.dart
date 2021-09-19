@@ -1,9 +1,9 @@
 import 'models.dart';
+import 'package:equatable/equatable.dart';
 
 //This is a data model for weather data from the API
-//https://www.7timer.info/bin/api.pl?lon=14.398&lat=47.911&product=astro&output=json
 
-class WeatherData {
+class WeatherData extends Equatable {
   final int timepoint;
   final int cloudcover;
   final int seeing;
@@ -13,7 +13,7 @@ class WeatherData {
   final int temp2m;
   final String precType;
   final WindData windData;
-  WeatherData(
+  const WeatherData(
       {required this.timepoint,
       required this.cloudcover,
       required this.seeing,
@@ -23,10 +23,20 @@ class WeatherData {
       required this.temp2m,
       required this.precType,
       required this.windData});
+  @override
+  List<Object> get props => [
+        timepoint,
+        cloudcover,
+        seeing,
+        transparency,
+        liftedIndex,
+        rh2m,
+        temp2m,
+        precType,
+        windData
+      ];
 
   factory WeatherData.fromJson(Map data) {
-    // var windData = data['wind10m'];
-    // windData.map((e) => WindData.fromJson(e));
     var body = data['wind10m'];
     WindData windData =
         WindData(direction: body['direction'], speed: body['speed']);
