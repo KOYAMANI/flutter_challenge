@@ -2,9 +2,9 @@
 
 A Flutter project for the Coding Challenge.
 
-## Get Started
+## Getting Started
 
-Ensure to enable the location service on your device.
+Please enable location services on your device.
 
 ## Environment
 
