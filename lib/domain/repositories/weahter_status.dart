@@ -1,4 +1,4 @@
-// This is local Map data to convert id from json Response into acutual weather status String
+// This is local Map data to convert json Response to information which shown on UI
 
 final Map<String, String> cloudCover = {
   "1": "0%~6%",

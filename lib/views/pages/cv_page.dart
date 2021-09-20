@@ -29,16 +29,13 @@ class CVPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 2,
-                  height: MediaQuery.of(context).size.height / 3,
-                  child: CircleAvatar(
-                      backgroundImage: cvPageRepository.profileImage),
-                ),
+                    width: MediaQuery.of(context).size.width / 2,
+                    height: MediaQuery.of(context).size.height / 3,
+                    child: CircleAvatar(
+                        backgroundImage: cvPageRepository.profileImage)),
                 ListTile(
-                  leading: Text(
-                    'CONTACT',
-                    style: Theme.of(context).textTheme.headline1,
-                  ),
+                  leading: Text('CONTACT',
+                      style: Theme.of(context).textTheme.headline1),
                 ),
                 Expanded(
                   child: ListView.builder(
@@ -48,10 +45,8 @@ class CVPage extends StatelessWidget {
                           padding: const EdgeInsets.all(1.0),
                           child: ListTile(
                             leading: cvPageRepository.icons[index],
-                            title: Text(
-                              cvPageRepository.information[index],
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
+                            title: Text(cvPageRepository.information[index],
+                                style: Theme.of(context).textTheme.bodyText1),
                           ),
                         );
                       }),

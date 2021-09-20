@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Custom App UI Theme
+// Custom App Theme
 class AppTheme {
   AppTheme._();
 

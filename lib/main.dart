@@ -5,6 +5,7 @@ import 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  //await locaiton service to be enabled
   await Permission.locationWhenInUse.serviceStatus.isEnabled;
   runApp(const ProviderScope(child: App()));
 }

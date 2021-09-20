@@ -3,15 +3,14 @@ import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:flutter_challenge/helpers/helpers.dart';
 import 'package:weather_icons/weather_icons.dart';
 
+// Generate weather icon data from Weatherdata
 class WeatherIconHelper {
   TimeHelper timeHelper = TimeHelper();
   final sunny1 = WeatherIcons.day_sunny;
 
   IconData getWeatherIcon({required WeatherData data}) {
-    print(data);
     final time = timeHelper.getDayAndTime(id: data.timepoint).hour;
     final dayNight = checkDayOrNight(time: time);
-    print(dayNight);
     if (dayNight == 0) {
       if (data.precType == 'none') {
         if (data.cloudcover <= 3) {
@@ -47,7 +46,7 @@ class WeatherIconHelper {
   int checkDayOrNight({required int time}) {
     if (time > 24) {
       throw Exception('Error check day or night');
-    } else if (time > 5 && time < 22) {
+    } else if (time > 5 && time < 21) {
       return 0; //day
     } else {
       return 1; //night

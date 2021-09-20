@@ -9,7 +9,6 @@ class TimeHelper {
   final date = DateTime.now().day;
   final String today = weekDays['${DateTime.now().weekday}']!;
 
-  // TODO? should it get the time from coordinate data
   // id == API response.body['timepoint']
   DayAndTime getDayAndTime({required int id}) {
     int shownTime = hour;

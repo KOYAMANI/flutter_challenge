@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:location/location.dart';
 import 'package:geocoding/geocoding.dart' as geo;
@@ -10,7 +11,6 @@ class LocationService {
   Location location = Location();
   late UserLocation currentLocation;
   late geo.Placemark currentAddress;
-  // late String currentAddress;
 
   //Continuously emit location updates
   final StreamController<UserLocation> _locationController =
@@ -47,7 +47,7 @@ class LocationService {
           country: currentAddress.country!,
           city: currentAddress.locality!);
     } catch (e) {
-      print('Could not get the location $e');
+      print(e);
     }
     return currentLocation;
   }

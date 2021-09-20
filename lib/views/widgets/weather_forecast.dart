@@ -50,10 +50,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
                 ListTile(
                   trailing: IconButton(
                       onPressed: () => Navigator.of(context).pop(),
-                      icon: const Icon(
-                        Icons.close,
-                        color: Colors.white,
-                      )),
+                      icon: const Icon(Icons.close, color: Colors.white)),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.15),
               ],
@@ -65,17 +62,13 @@ class _WeatherForecastState extends State<WeatherForecast> {
                 return weather.when(
                   data: (weather) => Column(
                     children: [
-                      Text(
-                        widget.userLocation.city,
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
+                      Text(widget.userLocation.city,
+                          style: Theme.of(context).textTheme.headline3),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      Text(
-                        '${weather[0].temp2m}°C',
-                        style: Theme.of(context).textTheme.headline3,
-                      ),
+                      Text('${weather[0].temp2m}°C',
+                          style: Theme.of(context).textTheme.headline3),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.05,
                       ),
@@ -92,16 +85,6 @@ class _WeatherForecastState extends State<WeatherForecast> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    // Show weekday
-                                    // Text(
-                                    //     timeHelper
-                                    //         .getDayAndTime(id: data.timepoint)
-                                    //         .weekday,
-                                    //     style: Theme.of(context)
-                                    //         .textTheme
-                                    //         .bodyText1),
-                                    // Show time in 24hour
-                                    // first data should be the data for now
                                     if (index == 0)
                                       Text('Now',
                                           style: Theme.of(context)
@@ -116,14 +99,12 @@ class _WeatherForecastState extends State<WeatherForecast> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-
                                     Icon(weatherIconHelper.getWeatherIcon(
                                         data: data)),
-                                    Text(
-                                      '${data.temp2m}°C',
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                    )
+                                    Text('${data.temp2m}°C',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1)
                                   ],
                                 ),
                               );
@@ -140,11 +121,11 @@ class _WeatherForecastState extends State<WeatherForecast> {
                     children: [
                       Text(error.toString()),
                       ElevatedButton(
-                        onPressed: () {
-                          context.refresh(weatherProvider(widget.userLocation));
-                        },
-                        child: const Text('Try again'),
-                      ),
+                          onPressed: () {
+                            context
+                                .refresh(weatherProvider(widget.userLocation));
+                          },
+                          child: const Text('Reload')),
                     ],
                   ),
                 );
@@ -180,8 +161,6 @@ class _WeatherForecastState extends State<WeatherForecast> {
                                 style: Theme.of(context).textTheme.bodyText1),
                             Text('wind',
                                 style: Theme.of(context).textTheme.bodyText1),
-                            // Text('lifted Idx',
-                            //     style: Theme.of(context).textTheme.bodyText2),
                             Text('humid',
                                 style: Theme.of(context).textTheme.bodyText1),
                           ],
@@ -208,8 +187,8 @@ class _WeatherForecastState extends State<WeatherForecast> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
-                                      //TODO need to consider which data to show
-                                      // Show weekday
+                                      //Shows only necessary datas for the user since API returns too many information
+                                      //Show weekday
                                       Text(
                                           timeHelper
                                               .getDayAndTime(id: data.timepoint)
@@ -254,11 +233,6 @@ class _WeatherForecastState extends State<WeatherForecast> {
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyText1),
-                                      // const SizedBox(width: 7),
-                                      // Text(liftedIndex['${data.liftedIndex}']!,
-                                      //     style: Theme.of(context)
-                                      //         .textTheme
-                                      //         .bodyText1),
                                       const SizedBox(width: 7),
                                       Text(
                                         rh2m['${data.rh2m}']!,
@@ -267,7 +241,6 @@ class _WeatherForecastState extends State<WeatherForecast> {
                                             .bodyText1,
                                       ),
                                       const SizedBox(width: 7),
-                                      // Text('precType: ${data.precType}'),
                                     ],
                                   ),
                                 );
@@ -288,7 +261,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
                         onPressed: () {
                           context.refresh(weatherProvider(widget.userLocation));
                         },
-                        child: const Text('Try again'),
+                        child: const Text('Reload'),
                       ),
                     ],
                   ),

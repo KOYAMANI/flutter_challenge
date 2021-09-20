@@ -26,7 +26,7 @@ void main() {
     });
   });
   group('checkDayOrNight', () {
-    //day: 6-22, night: 23-5
+    //day: 6-20, night: 23-5
     test('output day if daytime : 1', () {
       final result = helper.checkDayOrNight(time: 6);
 

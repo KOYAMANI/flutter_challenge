@@ -7,7 +7,7 @@ import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:flutter_challenge/helpers/helpers.dart';
 import 'package:weather_icons/weather_icons.dart';
 
-//This is a page to show current City and Weather
+//This is a page to show current City name and tempreature
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);
@@ -35,10 +35,8 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       backgroundColor: Colors.white60,
       appBar: AppBar(
-        title: Text(
-          'Weather',
-          style: Theme.of(context).appBarTheme.titleTextStyle,
-        ),
+        title: Text('Weather',
+            style: Theme.of(context).appBarTheme.titleTextStyle),
       ),
       body: Center(
         child: SizedBox(
@@ -54,6 +52,7 @@ class _WeatherPageState extends State<WeatherPage> {
                     isScrollControlled: true,
                     context: context,
                     builder: (BuildContext context) {
+                      //Show detailed weather forecast with a bottom sheet
                       return WeatherForecast(userLocation: userLocation);
                     });
               }
@@ -61,28 +60,22 @@ class _WeatherPageState extends State<WeatherPage> {
             child: Card(
               child: Container(
                 decoration: customDecoration.copyWith(
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
+                    borderRadius: BorderRadius.circular(8.0)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     ListTile(
-                      leading:
-                          const Icon(Icons.location_on, color: Colors.white),
-                      title: Text(
-                        userLocation.city,
-                        style: Theme.of(context).textTheme.headline2,
-                      ),
-                    ),
+                        leading:
+                            const Icon(Icons.location_on, color: Colors.white),
+                        title: Text(userLocation.city,
+                            style: Theme.of(context).textTheme.headline2)),
                     const Divider(
                         color: Colors.white,
                         height: 8,
                         thickness: 1,
                         indent: 10,
                         endIndent: 10),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
                     Consumer(builder: (context, watch, child) {
                       final weather = watch(weatherProvider(userLocation));
 
@@ -90,19 +83,15 @@ class _WeatherPageState extends State<WeatherPage> {
                           data: (weather) => Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    '${weather[0].temp2m}°C',
-                                    style:
-                                        Theme.of(context).textTheme.headline3,
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
+                                  Text('${weather[0].temp2m}°C',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline3),
+                                  const SizedBox(width: 5),
                                   BoxedIcon(
-                                    weatherIconHelper.getWeatherIcon(
-                                        data: weather[0]),
-                                    size: 30,
-                                  ),
+                                      weatherIconHelper.getWeatherIcon(
+                                          data: weather[0]),
+                                      size: 30),
                                 ],
                               ),
                           loading: () => const CircularProgressIndicator(
@@ -115,10 +104,9 @@ class _WeatherPageState extends State<WeatherPage> {
                                 onPressed: () => context
                                     .refresh(weatherProvider(userLocation)),
                               ),
-                              title: Text(
-                                error.toString(),
-                                style: Theme.of(context).textTheme.bodyText1,
-                              )));
+                              title: Text(error.toString(),
+                                  style:
+                                      Theme.of(context).textTheme.bodyText1)));
                     })
                   ],
                 ),
