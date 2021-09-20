@@ -17,7 +17,6 @@ Dart: 2.15.0
 
 iOS
 Version: 14.4
-
 Phone: iPhone 12 Pro Max
 
 Android
