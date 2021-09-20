@@ -4,7 +4,7 @@ A Flutter project for the Coding Challenge.
 
 ## Get Started
 
-Ensure to enable the location servivce on your device.
+Ensure to enable the location service on your device.
 
 ## Environment
 
@@ -17,6 +17,7 @@ Dart: 2.15.0
 
 iOS
 Version: 14.4
+
 Phone: iPhone 12 Pro Max
 
 Android
