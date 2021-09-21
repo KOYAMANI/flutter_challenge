@@ -5,10 +5,10 @@ import 'package:flutter_challenge/domain/models/models.dart';
 //API URL = "https://www.7timer.info/bin/astro.php?lon=113.2&lat=23.1&ac=0&unit=metric&output=json"
 
 Future<List<WeatherData>> fetchWeather(UserLocation location) async {
-  print('lon:${location.longtitude}');
+  print('lon:${location.longitude}');
   print('lat: ${location.latitude}');
   final url = Uri.parse(
-      "https://www.7timer.info/bin/astro.php?lon=${location.longtitude}&lat=${location.latitude}&ac=0&unit=metric&output=json");
+      "https://www.7timer.info/bin/astro.php?lon=${location.longitude}&lat=${location.latitude}&ac=0&unit=metric&output=json");
 
   final res = await http.get(url);
 
