@@ -34,7 +34,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               create: (_) => LocationService().getStreamData,
               initialData: const UserLocation(
                   latitude: 0.00,
-                  longtitude: 0.00,
+                  longitude: 0.00,
                   country: 'Country failed to load',
                   city: 'City failed to load'),
               child: const WeatherPage(),

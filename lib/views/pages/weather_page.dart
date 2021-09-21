@@ -7,7 +7,7 @@ import 'package:flutter_challenge/domain/models/models.dart';
 import 'package:flutter_challenge/helpers/helpers.dart';
 import 'package:weather_icons/weather_icons.dart';
 
-//This is a page to show current City name and tempreature
+//This is a page to show current City name and temperature
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({Key? key}) : super(key: key);

@@ -27,7 +27,7 @@ class LocationService {
 
           _locationController.add(UserLocation(
               latitude: locationData.latitude!,
-              longtitude: locationData.longitude!,
+              longitude: locationData.longitude!,
               country: currentAddress.country!,
               city: currentAddress.locality!));
         });
@@ -43,7 +43,7 @@ class LocationService {
 
       currentLocation = UserLocation(
           latitude: userLocation.latitude!,
-          longtitude: userLocation.longitude!,
+          longitude: userLocation.longitude!,
           country: currentAddress.country!,
           city: currentAddress.locality!);
     } catch (e) {

@@ -4,7 +4,7 @@ A Flutter project for the Coding Challenge.
 
 ## Get Started
 
-Ensure to enable the location servivce on your device.
+Ensure to enable the location service on your device.
 
 ## Environment
 
