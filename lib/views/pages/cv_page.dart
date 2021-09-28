@@ -39,13 +39,14 @@ class CVPage extends StatelessWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                      itemCount: cvPageRepository.information.length,
+                      itemCount: cvPageRepository.infos.length,
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding: const EdgeInsets.all(1.0),
                           child: ListTile(
-                            leading: cvPageRepository.icons[index],
-                            title: Text(cvPageRepository.information[index],
+                            leading: cvPageRepository.infos[index].icon,
+                            title: Text(
+                                cvPageRepository.infos[index].description,
                                 style: Theme.of(context).textTheme.bodyText1),
                           ),
                         );
